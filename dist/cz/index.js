@@ -1,16 +1,16 @@
-
+'use strict';
 'format cjs';
 
-const engine = require('./engine');
+var engine = require('./engine');
 
 module.exports = engine({
   types: {
     新功能: {
-      description: '🌟  一个新功能',
+      description: '🌟  添加一个新功能',
       title: '🌟 新功能'
     },
     修复: {
-      description: '🐛  一个 bug 修复',
+      description: '🐛  修复一个bug',
       title: '🐛 Bug 修复'
     },
     性能优化: {
@@ -30,7 +30,7 @@ module.exports = engine({
       title: '🔧 测试'
     },
     重构: {
-      description: '🔨  既不是修复 bug 也不是添加新功能的代码更改',
+      description: '🔨  既不是修复bug也不是添加新功能的代码更改',
       title: '🔨 代码重构'
     },
     构建: {
@@ -40,6 +40,10 @@ module.exports = engine({
     持续集成: {
       description: '📦  持续集成的配置文件和脚本的改变（例如: Travis, Circle）',
       title: '📦 持续集成'
+    },
+    其他修改: {
+      description: '📃  不修改src或test文件的其他更改',
+      title: '📃 其他修改'
     },
     撤销: {
       description: '🔙  撤销上一次的提交',

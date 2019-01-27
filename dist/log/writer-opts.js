@@ -1,12 +1,12 @@
+'use strict';
 
+var compareFunc = require('compare-func');
+var Q = require('q');
+var readFile = Q.denodeify(require('fs').readFile);
+var resolve = require('path').resolve;
 
-const compareFunc = require('compare-func');
-const Q = require('q');
-const readFile = Q.denodeify(require('fs').readFile);
-const resolve = require('path').resolve;
-
-module.exports = Q.all([readFile(resolve(__dirname, './templates/template.hbs'), 'utf-8'), readFile(resolve(__dirname, './templates/header.hbs'), 'utf-8'), readFile(resolve(__dirname, './templates/commit.hbs'), 'utf-8'), readFile(resolve(__dirname, './templates/footer.hbs'), 'utf-8')]).spread((template, header, commit, footer) => {
-  const writerOpts = getWriterOpts();
+module.exports = Q.all([readFile(resolve(__dirname, './templates/template.hbs'), 'utf-8'), readFile(resolve(__dirname, './templates/header.hbs'), 'utf-8'), readFile(resolve(__dirname, './templates/commit.hbs'), 'utf-8'), readFile(resolve(__dirname, './templates/footer.hbs'), 'utf-8')]).spread(function (template, header, commit, footer) {
+  var writerOpts = getWriterOpts();
 
   writerOpts.mainTemplate = template;
   writerOpts.headerPartial = header;
@@ -19,10 +19,10 @@ module.exports = Q.all([readFile(resolve(__dirname, './templates/template.hbs'),
 function getWriterOpts() {
   return {
     transform: function transform(commit, context) {
-      let discard = true;
-      const issues = [];
+      var discard = true;
+      var issues = [];
 
-      commit.notes.forEach((note) => {
+      commit.notes.forEach(function (note) {
         note.title = '💡 不兼容变更';
         discard = false;
       });
@@ -48,6 +48,8 @@ function getWriterOpts() {
         commit.type = '🏠 构建系统';
       } else if (commit.type === 'ci' || commit.type === '持续集成') {
         commit.type = '📦 持续集成';
+      } else if (commit.type === 'chore' || commit.type === '其他') {
+        commit.type = '📃 其他';
       } else if (commit.type === '杂') {
         commit.type = '🚴 杂';
       }
@@ -61,30 +63,29 @@ function getWriterOpts() {
       }
 
       if (typeof commit.subject === 'string') {
-        let url = context.repository ? `${context.host}/${context.owner}/${context.repository}` : context.repoUrl;
+        var url = context.repository ? context.host + '/' + context.owner + '/' + context.repository : context.repoUrl;
         if (url) {
-          url += '/issues/';
+          url = url + '/issues/';
           // Issue URLs.
-          commit.subject = commit.subject.replace(/#([0-9]+)/g, (_, issue) => {
+          commit.subject = commit.subject.replace(/#([0-9]+)/g, function (_, issue) {
             issues.push(issue);
-            return `[#${issue}](${url}${issue})`;
+            return '[#' + issue + '](' + url + issue + ')';
           });
         }
         if (context.host) {
           // User URLs.
-          commit.subject = commit.subject.replace(/\B@([a-z0-9](?:-?[a-z0-9]){0,38})/g, `[@$1](${context.host}/$1)`);
+          commit.subject = commit.subject.replace(/\B@([a-z0-9](?:-?[a-z0-9]){0,38})/g, '[@$1](' + context.host + '/$1)');
         }
       }
 
       // remove references that already appear in the subject
-      commit.references = commit.references.filter((reference) => {
+      commit.references = commit.references.filter(function (reference) {
         if (issues.indexOf(reference.issue) === -1) {
           return true;
         }
 
         return false;
       });
-
       return commit;
     },
     groupBy: 'type',
