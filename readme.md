@@ -46,7 +46,7 @@ npm i conventional-changelog-cli -D
 }
 ```
 1. 生成当前版本的变化情况
-2. 生成所有的日志文件
+0. 生成所有的日志文件
 
 ## 三、lint 模块
 
