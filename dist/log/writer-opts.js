@@ -25,7 +25,9 @@ function getWriterOpts() {
         note.title = '💡 不兼容变更';
         discard = false;
       });
-      if (commit.type === 'feat' || commit.type === '新功能') {
+      if (commit.type === 'record' || commit.type === '记录') {
+        commit.type = '💡 记录';
+      } else if (commit.type === 'feat' || commit.type === '新功能') {
         commit.type = '✨ 新功能';
       } else if (commit.type === 'fix' || commit.type === '修复') {
         commit.type = '🐛 Bug 修复';

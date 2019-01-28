@@ -5,6 +5,10 @@ var engine = require('./engine');
 
 module.exports = engine({
   types: {
+    记录: {
+      description: '💡  添加一个记录，通常用于代码调试提交',
+      title: '💡 记录'
+    },
     新功能: {
       description: '✨  添加一个新功能',
       title: '✨ 新功能'
