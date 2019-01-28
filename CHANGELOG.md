@@ -1,4 +1,23 @@
-## 0.0.16 (2019-01-27)
+# Change Log
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+<a name="0.0.17"></a>
+## 0.0.17 (2019-01-28)
+
+
+
+## 0.0.16 (2019-01-28)
+
+### ⚡️ 性能优化
+
+* **视图层：** test ([6e183be](https://github.com/qinmudi/wii-changelog/commit/6e183be))
+
+
+### ✅ 测试
+
+* **未知：** 添加测试能力 ([774cc78](https://github.com/qinmudi/wii-changelog/commit/774cc78)), closes [#123](https://github.com/qinmudi/wii-changelog/issues/123)
+
 
 ### 🐛 Bug 修复
 
@@ -6,14 +25,29 @@
 * **未知：** 修复模板丢失问题 ([d5a3f3e](https://github.com/qinmudi/wii-changelog/commit/d5a3f3e))
 
 
-### 🔧 测试
+### 👷 构建系统
 
-* **未知：** 添加测试能力 ([774cc78](https://github.com/qinmudi/wii-changelog/commit/774cc78)), closes [#123](https://github.com/qinmudi/wii-changelog/issues/123)
+* **代码发布：** 发布新版本 ([2c19576](https://github.com/qinmudi/wii-changelog/commit/2c19576))
+
+
+### 📃 其他
+
+* **版本发布：** 0.0.15 ([ac18670](https://github.com/qinmudi/wii-changelog/commit/ac18670))
+* **版本发布：** 0.0.16 ([7517784](https://github.com/qinmudi/wii-changelog/commit/7517784))
+
+
+### 📝 文档
+
+* **未知：** 修改文档问题 ([ab2c17e](https://github.com/qinmudi/wii-changelog/commit/ab2c17e))
+* **未知：** 文档修改 ([c1f3c5b](https://github.com/qinmudi/wii-changelog/commit/c1f3c5b))
+
+
+### 📦 持续集成
+
+* **1：** 2 ([06eeebc](https://github.com/qinmudi/wii-changelog/commit/06eeebc))
+* **未知：** 发布新版本 ([a8ec21c](https://github.com/qinmudi/wii-changelog/commit/a8ec21c))
 
 
 ### 💡 不兼容变更
 
 * **未知：** 阿加莎快点哈快速的
-
-
-

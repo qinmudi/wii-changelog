@@ -1,6 +1,6 @@
 {
   "name": "wii-changelog",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "author": "qinmudi",
   "description": "wii changelog",
   "main": "dist/index.js",
