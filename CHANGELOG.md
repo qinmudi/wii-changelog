@@ -1,13 +1,4 @@
-# Change Log
-
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
-
-<a name="0.0.18"></a>
 ## 0.0.18 (2019-01-28)
-
-
-
-## 0.0.17 (2019-01-28)
 
 ### ⚡️ 性能优化
 
@@ -30,11 +21,17 @@ All notable changes to this project will be documented in this file. See [standa
 * **代码发布：** 发布新版本 ([2c19576](https://github.com/qinmudi/wii-changelog/commit/2c19576))
 
 
+### 👽 未知
+
+* 添加对非规范的commit支持 ([f56d474](https://github.com/qinmudi/wii-changelog/commit/f56d474))
+
+
 ### 📃 其他
 
 * **版本发布：** 0.0.15 ([ac18670](https://github.com/qinmudi/wii-changelog/commit/ac18670))
 * **版本发布：** 0.0.16 ([7517784](https://github.com/qinmudi/wii-changelog/commit/7517784))
 * **版本发布：** 0.0.17 ([790fdba](https://github.com/qinmudi/wii-changelog/commit/790fdba))
+* **版本发布：** 0.0.18 ([0a8cb9a](https://github.com/qinmudi/wii-changelog/commit/0a8cb9a))
 
 
 ### 📝 文档
@@ -52,3 +49,6 @@ All notable changes to this project will be documented in this file. See [standa
 ### 💡 不兼容变更
 
 * **未知：** 阿加莎快点哈快速的
+
+
+

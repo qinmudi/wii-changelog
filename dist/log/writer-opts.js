@@ -19,43 +19,44 @@ module.exports = Q.all([readFile(resolve(__dirname, './templates/template.hbs'),
 function getWriterOpts() {
   return {
     transform: function transform(commit, context) {
-      var discard = true;
+      var discard = true; // 用来设置不显示类型
       var issues = [];
-
       commit.notes.forEach(function (note) {
         note.title = '💡 不兼容变更';
         discard = false;
       });
       if (commit.type === 'feat' || commit.type === '新功能') {
-        commit.type = '🌟 新功能';
+        commit.type = '✨ 新功能';
       } else if (commit.type === 'fix' || commit.type === '修复') {
         commit.type = '🐛 Bug 修复';
       } else if (commit.type === 'perf' || commit.type === '性能优化') {
-        commit.type = '🚀 性能优化';
+        commit.type = '⚡️ 性能优化';
       } else if (commit.type === 'revert' || commit.type === '撤销') {
-        commit.type = '🔙 撤销';
-      } else if (discard) {
-        return;
+        commit.type = '⏪ 撤销';
       } else if (commit.type === 'docs' || commit.type === '文档') {
         commit.type = '📝 文档';
-      } else if (commit.type === 'style' || commit.type === '代码样式') {
-        commit.type = '🎨 代码样式';
+      } else if (commit.type === 'style' || commit.type === '代码格式') {
+        commit.type = '🎨 代码格式';
       } else if (commit.type === 'refactor' || commit.type === '重构') {
-        commit.type = '🔨 代码重构';
+        commit.type = '♻️ 代码重构';
       } else if (commit.type === 'test' || commit.type === '测试') {
-        commit.type = '🔧 测试';
+        commit.type = '✅ 测试';
       } else if (commit.type === 'build' || commit.type === '构建') {
-        commit.type = '🏠 构建系统';
+        commit.type = '👷 构建系统';
       } else if (commit.type === 'ci' || commit.type === '持续集成') {
         commit.type = '📦 持续集成';
-      } else if (commit.type === 'chore' || commit.type === '其他') {
+      } else if (commit.type === 'chore' || commit.type === '其他修改') {
         commit.type = '📃 其他';
-      } else if (commit.type === '杂') {
-        commit.type = '🚴 杂';
+      } else if (commit.type === '未知' || commit.type === null) {
+        commit.type = '👽 未知';
       }
 
       if (commit.scope === '*') {
         commit.scope = '';
+      } else if (commit.scope === null) {
+        commit.scope = '';
+      } else if (commit.scope === 'release') {
+        commit.scope = '版本发布';
       }
 
       if (typeof commit.hash === 'string') {
@@ -65,7 +66,7 @@ function getWriterOpts() {
       if (typeof commit.subject === 'string') {
         var url = context.repository ? context.host + '/' + context.owner + '/' + context.repository : context.repoUrl;
         if (url) {
-          url = url + '/issues/';
+          url += '/issues/';
           // Issue URLs.
           commit.subject = commit.subject.replace(/#([0-9]+)/g, function (_, issue) {
             issues.push(issue);
@@ -76,6 +77,8 @@ function getWriterOpts() {
           // User URLs.
           commit.subject = commit.subject.replace(/\B@([a-z0-9](?:-?[a-z0-9]){0,38})/g, '[@$1](' + context.host + '/$1)');
         }
+      } else {
+        commit.subject = commit.header;
       }
 
       // remove references that already appear in the subject
@@ -86,6 +89,7 @@ function getWriterOpts() {
 
         return false;
       });
+
       return commit;
     },
     groupBy: 'type',

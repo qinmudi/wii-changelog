@@ -32,6 +32,7 @@ var getList = function getList(obj) {
 
 module.exports = function (options) {
   var typeList = getList(options.types);
+  var scopeList = getList(options.scopes);
 
   return {
     prompter: function prompter(cz, commit) {
@@ -43,9 +44,10 @@ module.exports = function (options) {
         message: '选择你提交的信息类型:',
         choices: typeList
       }, {
-        type: 'input',
+        type: 'list',
         name: 'scope',
-        message: '本次提交的改变所影响的范围？ (按 enter 键跳过)\n'
+        message: '选择本次提交的改变所影响的范围:',
+        choices: scopeList
       }, {
         type: 'input',
         name: 'subject',
